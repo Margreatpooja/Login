@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login_page_💖</title>
+    <link rel="stylesheet" href="Login.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    
+  </head>
+  <body>
+    <div class="container">
+      <h2>Login💝</h2>
+      <form id="loginform">
+        <input class="text1" type="text" id="username" placeholder="Name😙" required />
+        <input class="text2" type="email" id="email" placeholder="Email" required />
+        <input class="text3" type="password" id="password" placeholder="Password❓" required />
+        <button  type="submit">Touch-Me</button>
+        <div class="error" id="errormessage"></div>
+        </form>
+      
+    
+    <script>
+      const loginform = document.getElementById("loginform");
+      
+      const errormessage = document.getElementById("errormessage");
+
+      loginform.addEventListener("submit",function(event){
+        event.preventDefault();
+        //errormessage clear history
+        errormessage.textContent = "";
+        //getinputvalues
+        const username = document.getElementById("username").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        //basic validation
+        if(username === "" || email === "" || password === ""){
+          errormessage.textContent = "Hey ! come on fill me up😏";
+          return;
+        }
+        //fake api call
+        fakeApiCall(username , email , password)
+        .then(response => {
+          if(response.success){
+            window.location.href = 'success.html'
+          }else{
+            window.location.href = 'error.html'
+          }
+        })
+        .catch(error => {
+          errormessage.textContent = "Hey do it right 🤬";
+        });
+
+      
+      });
+      //fake api call function
+      function fakeApiCall(username, email, password) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    // Simulate success or failure based on some condition
+                    if (username === 'user' && password === 'pass123') {
+                        resolve({ success: true });
+                    } else {
+                        resolve({ success: false, message: 'Hey do it correctly!' });
+                    }
+                }, 1000); // Simulate network delay
+            });
+          }
+
+      //show the error message when the user clicks the
+    </script>
+  </body>
+</html>
