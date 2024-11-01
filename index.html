@@ -41,6 +41,17 @@
           errormessage.textContent = "Hey ! come on fill me up😏";
           return;
         }
+        // Validate email address
+        if (!validateEmail(email)) {
+                errormessage.textContent = "Invalid email address";
+                return;
+            }
+            // Validate password complexity
+            if (!validatePassword(password)) {
+                errormessage.textContent = "Password must be at least 12 characters long and contain uppercase, lowercase, and numbers";
+                return;
+            }
+
         //fake api call
         fakeApiCall(username , email , password)
         .then(response => {
@@ -61,7 +72,7 @@
             return new Promise((resolve) => {
                 setTimeout(() => {
                     // Simulate success or failure based on some condition
-                    if (username === 'user' && password === '1234') {
+                    if (username === 'user' && password === 'StrongPassword123DEF') {
                         resolve({ success: true });
                     } else {
                         resolve({ success: false, message: 'Hey do it correctly!' });
@@ -69,6 +80,19 @@
                 }, 1000); // Simulate network delay
             });
           }
+          // Email validation function
+      function validateEmail(email) {
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        return emailRegex.test(email);
+}
+
+// Password validation function
+    function validatePassword(password) {
+      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{12,}$/;
+      return passwordRegex.test(password);
+}
+         
+          
 
       //show the error message when the user clicks the
     </script>
